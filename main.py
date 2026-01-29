@@ -13,6 +13,9 @@ VERIFY_TOKEN = os.getenv("VERIFY_TOKEN")
 WHATSAPP_URL = f"https://graph.facebook.com/v24.0/{PHONE_NUMBER_ID}/messages"
 
 
+@app.get("/")
+def welcome():
+    return JSONResponse(status_code=200,content="welcome to whatsapp webhook ")
 
 @app.get("/webhook")
 def verify(
@@ -69,6 +72,6 @@ def send_message(to: str, text: str):
 if __name__ == "__main__":
     uvicorn.run(
         "main:app",
-        host="localhost",
+        host="0.0.0.0",
         reload=True
     )
